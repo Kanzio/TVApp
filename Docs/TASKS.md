@@ -7,37 +7,37 @@
 - [x] Set up `AI_LOG.md`, `CODE_REVIEW.md`, and `REFLECTION.md` in the repository root as required by the submission guidelines.
 
 ## Phase 2: Domain & Networking Foundation
-- [ ] Define `Show` domain model.
-- [ ] Define `ShowRepositoryProtocol`.
-- [ ] Define `NetworkServiceProtocol`, `NetworkError`, and `Endpoint`.
-- [ ] Implement `URLSessionNetworkService` using `async/await`.
+- [x] Define `Show` domain model.
+- [x] Define `ShowRepositoryProtocol`.
+- [x] Define `NetworkServiceProtocol`, `NetworkError`, and `Endpoint`.
+- [x] Implement `URLSessionNetworkService` using `async/await`.
 
 ## Phase 3: Data Layer
-- [ ] Create `ShowDTO` and nested DTOs matching TVMaze JSON response.
-- [ ] Implement `ShowMapper` for mapping DTOs to the `Show` domain model, carefully handling nullable fields (rating, image).
-- [ ] Implement `ShowRepository` conforming to `ShowRepositoryProtocol`.
+- [x] Create `ShowDTO` and nested DTOs matching TVMaze JSON response.
+- [x] Implement `ShowMapper` for mapping DTOs to the `Show` domain model, carefully handling nullable fields (rating, image).
+- [x] Implement `ShowRepository` conforming to `ShowRepositoryProtocol`.
 
 ## Phase 4: Core Utilities & DI
-- [ ] Create generic `ViewState<T>` enum.
-- [ ] Add HTML to plain-text / `AttributedString` conversion helper.
-- [ ] Add date formatting extensions for the premiere date.
-- [ ] Set up `AppDependencies.swift` for lightweight dependency injection.
+- [x] Create generic `ViewState<T>` enum.
+- [x] Add HTML to plain-text / `AttributedString` conversion helper.
+- [x] Add date formatting extensions for the premiere date.
+- [x] Set up `AppDependencies.swift` for lightweight dependency injection.
 
 ## Phase 5: List Screen
-- [ ] Implement `ShowListViewModel` with loading, success, error, and empty state management.
-- [ ] Create `ErrorStateView` (with retry button) and `EmptyStateView` components.
-- [ ] Build `ShowRowView` to display poster thumbnail (`AsyncImage`), title, and rating.
-- [ ] Build `ShowListView` displaying the list of shows and handling the different `ViewState`s.
-- [ ] Wire up the dependency injection in the App entry point.
+- [x] Implement `ShowListViewModel` with loading, success, error, and empty state management.
+- [x] Create `ErrorStateView` (with retry button) and `EmptyStateView` components.
+- [x] Build `ShowRowView` to display poster thumbnail (`AsyncImage`), title, and rating.
+- [x] Build `ShowListView` displaying the list of shows and handling the different `ViewState`s.
+- [x] Wire up the dependency injection in the App entry point.
 
 ## Phase 6: Detail Screen & Navigation
-- [ ] Implement `ShowDetailViewModel`.
-- [ ] Build `ShowDetailView` with large poster, title, formatted summary, and human-readable premiere date.
-- [ ] Connect navigation from `ShowListView` to `ShowDetailView` using `NavigationStack` and `NavigationLink`.
+- [x] Implement `ShowDetailViewModel`.
+- [x] Build `ShowDetailView` with large poster, title, formatted summary, and human-readable premiere date.
+- [x] Connect navigation from `ShowListView` to `ShowDetailView` using `NavigationStack` and `NavigationLink`.
 
 ## Phase 7: Share Feature
-- [ ] Implement `ShareContentBuilder` to compose shareable text (title, plain-text summary, TVMaze URL).
-- [ ] Add `ShareLink` to the `ShowDetailView` toolbar.
+- [x] Implement `ShareContentBuilder` to compose shareable text (title, plain-text summary, TVMaze URL).
+- [x] Add `ShareLink` to the `ShowDetailView` toolbar.
 
 ## Phase 8: Testing
 - [ ] Create `MockNetworkService` and `MockShowRepository`.
