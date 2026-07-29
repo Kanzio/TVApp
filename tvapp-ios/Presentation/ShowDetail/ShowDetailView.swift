@@ -60,6 +60,35 @@ struct ShowDetailView: View {
                     
                     Divider()
                     
+                    Text("Cast")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    
+                    switch viewModel.castState {
+                    case .loading:
+                        ProgressView("Loading cast...")
+                            .padding(.top, 16)
+                    case .success(let cast):
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 16) {
+                                ForEach(cast) { member in
+                                    CastMemberCardView(castMember: member)
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                        .padding(.horizontal, -16)
+                    case .error(let message):
+                        Text(message)
+                            .foregroundColor(.red)
+                            .font(.subheadline)
+                    case .empty:
+                        Text("No cast available.")
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Divider()
+                    
                     Text("Seasons")
                         .font(.title2)
                         .fontWeight(.semibold)
@@ -72,10 +101,15 @@ struct ShowDetailView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 16) {
                                 ForEach(seasons) { season in
-                                    SeasonCardView(season: season)
+                                    NavigationLink(value: season) {
+                                        SeasonCardView(season: season)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
+                            .padding(.horizontal)
                         }
+                        .padding(.horizontal, -16)
                     case .error(let message):
                         Text(message)
                             .foregroundColor(.red)

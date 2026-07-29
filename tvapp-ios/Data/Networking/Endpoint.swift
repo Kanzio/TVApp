@@ -4,6 +4,8 @@ enum Endpoint {
     case shows(page: Int)
     case showDetails(id: Int)
     case seasons(showId: Int)
+    case episodes(seasonId: Int)
+    case cast(showId: Int)
     
     var url: URL? {
         var components = URLComponents()
@@ -18,6 +20,10 @@ enum Endpoint {
             components.path = "/shows/\(id)"
         case .seasons(let showId):
             components.path = "/shows/\(showId)/seasons"
+        case .episodes(let seasonId):
+            components.path = "/seasons/\(seasonId)/episodes"
+        case .cast(let showId):
+            components.path = "/shows/\(showId)/cast"
         }
         
         return components.url

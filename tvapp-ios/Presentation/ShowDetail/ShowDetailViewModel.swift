@@ -8,6 +8,7 @@ class ShowDetailViewModel {
     let show: Show
     private let repository: ShowRepositoryProtocol
     var seasonsState: ViewState<[Season]> = .loading
+    var castState: ViewState<[CastMember]> = .loading
     var attributedSummary: AttributedString?
     var plainTextSummary: String = "No description available."
     
@@ -33,6 +34,10 @@ class ShowDetailViewModel {
         if case .loading = seasonsState {
             await fetchSeasons()
         }
+        
+        if case .loading = castState {
+            await fetchCast()
+        }
     }
     
     private func fetchSeasons() async {
@@ -52,6 +57,22 @@ class ShowDetailViewModel {
         } catch {
             print("Other error: \(error)")
             seasonsState = .error("Something went wrong while loading seasons. Please try again.")
+        }
+    }
+    
+    private func fetchCast() async {
+        castState = .loading
+        do {
+            let cast = try await repository.fetchCast(showId: show.id)
+            if cast.isEmpty {
+                castState = .empty
+            } else {
+                castState = .success(cast)
+            }
+        } catch let error as NetworkError {
+            castState = .error(errorMessage(for: error))
+        } catch {
+            castState = .error("Failed to load cast.")
         }
     }
     

@@ -56,6 +56,9 @@ struct ShowListView: View {
             .navigationDestination(for: Show.self) { show in
                 ShowDetailView(show: show, repository: dependencies.showRepository)
             }
+            .navigationDestination(for: Season.self) { season in
+                SeasonDetailView(season: season, repository: dependencies.showRepository)
+            }
         }
         .task {
             // Only fetch on initial load

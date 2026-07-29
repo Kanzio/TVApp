@@ -24,4 +24,16 @@ class ShowRepository: ShowRepositoryProtocol {
         let dtos: [SeasonDTO] = try await networkService.request(endpoint)
         return dtos.map { SeasonMapper.map(dto: $0) }
     }
+    
+    func fetchEpisodes(seasonId: Int) async throws -> [Episode] {
+        let endpoint = Endpoint.episodes(seasonId: seasonId)
+        let dtos: [EpisodeDTO] = try await networkService.request(endpoint)
+        return dtos.map { EpisodeMapper.map(dto: $0) }
+    }
+    
+    func fetchCast(showId: Int) async throws -> [CastMember] {
+        let endpoint = Endpoint.cast(showId: showId)
+        let dtos: [CastDTO] = try await networkService.request(endpoint)
+        return dtos.map { CastMapper.map(dto: $0) }
+    }
 }
