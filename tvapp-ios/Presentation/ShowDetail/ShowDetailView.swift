@@ -3,8 +3,8 @@ import SwiftUI
 struct ShowDetailView: View {
     @State private var viewModel: ShowDetailViewModel
     
-    init(viewModel: ShowDetailViewModel) {
-        _viewModel = State(wrappedValue: viewModel)
+    init(show: Show, repository: ShowRepositoryProtocol) {
+        _viewModel = State(initialValue: ShowDetailViewModel(show: show, repository: repository))
     }
     
     var body: some View {
@@ -57,8 +57,40 @@ struct ShowDetailView: View {
                             .font(.body)
                             .foregroundColor(.secondary)
                     }
+                    
+                    Divider()
+                    
+                    Text("Seasons")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    
+                    switch viewModel.seasonsState {
+                    case .loading:
+                        ProgressView("Loading seasons...")
+                            .padding(.top, 16)
+                    case .success(let seasons):
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 16) {
+                                ForEach(seasons) { season in
+                                    SeasonCardView(season: season)
+                                }
+                            }
+                        }
+                    case .error(let message):
+                        Text(message)
+                            .foregroundColor(.red)
+                            .font(.subheadline)
+                    case .empty:
+                        Text("No seasons available.")
+                            .foregroundColor(.secondary)
+                    }
                 }
                 .padding(.horizontal)
+            }
+        }
+        .onAppear {
+            Task {
+                await viewModel.loadData()
             }
         }
         .navigationTitle(viewModel.show.name)

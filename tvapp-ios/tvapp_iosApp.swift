@@ -7,6 +7,7 @@ struct tvapp_iosApp: App {
     var body: some Scene {
         WindowGroup {
             ShowListView(viewModel: ShowListViewModel(repository: dependencies.showRepository))
+                .environment(dependencies)
         }
     }
 }

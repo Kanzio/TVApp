@@ -18,4 +18,10 @@ class ShowRepository: ShowRepositoryProtocol {
         let dto: ShowDTO = try await networkService.request(endpoint)
         return ShowMapper.map(dto: dto)
     }
+    
+    func fetchSeasons(showId: Int) async throws -> [Season] {
+        let endpoint = Endpoint.seasons(showId: showId)
+        let dtos: [SeasonDTO] = try await networkService.request(endpoint)
+        return dtos.map { SeasonMapper.map(dto: $0) }
+    }
 }

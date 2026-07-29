@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ShowListView: View {
+    @Environment(AppDependencies.self) private var dependencies
     @State private var viewModel: ShowListViewModel
 
     init(viewModel: ShowListViewModel) {
@@ -53,7 +54,7 @@ struct ShowListView: View {
             }
             .navigationTitle("TV Shows")
             .navigationDestination(for: Show.self) { show in
-                ShowDetailView(viewModel: ShowDetailViewModel(show: show))
+                ShowDetailView(show: show, repository: dependencies.showRepository)
             }
         }
         .task {

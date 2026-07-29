@@ -3,6 +3,7 @@ import Foundation
 enum Endpoint {
     case shows(page: Int)
     case showDetails(id: Int)
+    case seasons(showId: Int)
     
     var url: URL? {
         var components = URLComponents()
@@ -15,6 +16,8 @@ enum Endpoint {
             components.queryItems = [URLQueryItem(name: "page", value: String(page))]
         case .showDetails(let id):
             components.path = "/shows/\(id)"
+        case .seasons(let showId):
+            components.path = "/shows/\(showId)/seasons"
         }
         
         return components.url
