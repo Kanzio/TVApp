@@ -1,0 +1,18 @@
+# Xcode & iOS
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+xcuserdata/
+
+# Build generated files
+build/
+DerivedData/
+*.build
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# macOS system files
+.DS_Store
+*.swp
+*~
