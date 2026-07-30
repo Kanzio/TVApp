@@ -40,9 +40,9 @@
 - [x] Add `ShareLink` to the `ShowDetailView` toolbar.
 
 ## Phase 8: Testing
-- [ ] Create `MockNetworkService` and `MockShowRepository`.
-- [ ] Write unit tests for `ShowRepository` (mapping logic, error propagation).
-- [ ] Write unit tests for `ShowListViewModel` (state transitions, retry logic, empty states).
+- [x] Create `MockNetworkService` and `MockShowRepository`.
+- [x] Write unit tests for `ShowRepository` (mapping logic, error propagation).
+- [x] Write unit tests for `ShowListViewModel` (state transitions, retry logic, empty states).
 
 ## Phase 9: Polish & Final Submission Tasks
 - [ ] Add accessibility labels and verify Dynamic Type support.

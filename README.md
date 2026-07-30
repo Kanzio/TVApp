@@ -1,8 +1,13 @@
+# Video Link
+
+https://drive.google.com/file/d/14oZq35cAiTFTjfg4YHsclzSX-XzllfBn/view?usp=sharing
+
 # TV Show Browser
 
 A simple TV show browser app built with Swift and SwiftUI, demonstrating clean architecture principles, state management, and modern iOS development practices. This was built as part of the Mamikos take-home assignment.
 
 ## Features Implemented
+
 - [ ] List Screen fetching TV shows from TVMaze API.
 - [ ] Detail Screen displaying comprehensive show information.
 - [ ] Share action for shows.
@@ -11,6 +16,7 @@ A simple TV show browser app built with Swift and SwiftUI, demonstrating clean a
 - [ ] Unit Tests.
 
 ## Architecture Overview
+
 The application follows a lightweight Clean Architecture pattern utilizing MVVM (Model-View-ViewModel) for the presentation layer.
 
 - **Presentation Layer:** Contains SwiftUI views and ViewModels to handle state (`ViewState`).
@@ -18,6 +24,7 @@ The application follows a lightweight Clean Architecture pattern utilizing MVVM 
 - **Data Layer:** Implements API calls, network models (DTOs), and mappers.
 
 ## Folder Structure
+
 ```
 tvapp-ios/
 ├── App/                # App entry point
@@ -29,22 +36,27 @@ tvapp-ios/
 ```
 
 ## Key Design Decisions
+
 (To be updated during implementation)
 
 ## How to Run
+
 - Open `tvapp-ios.xcodeproj` in Xcode (requires Xcode 14+ / iOS 16+).
 - Select the `tvapp-ios` scheme.
 - Press `Cmd + R` to build and run the app.
 
 ## How to Run Tests
+
 - Press `Cmd + U` to run the unit test suite.
 
 ## Known Limitations / Out of Scope
+
 - Pagination beyond the first page is not implemented.
 - Offline persistence (e.g., CoreData) is not supported in this version.
 - Search / Filtering.
 
 ## Future Improvements
+
 - Add infinite scrolling pagination.
 - Implement robust image caching (e.g., Kingfisher).
 - Add offline storage for browsing without internet access.

@@ -41,21 +41,17 @@ class ShowDetailViewModel {
     }
     
     private func fetchSeasons() async {
-        print("fetchSeasons called for show \(show.id)")
         seasonsState = .loading
         do {
             let seasons = try await repository.fetchSeasons(showId: show.id)
-            print("Fetched \(seasons.count) seasons")
             if seasons.isEmpty {
                 seasonsState = .empty
             } else {
                 seasonsState = .success(seasons)
             }
         } catch let error as NetworkError {
-            print("Network error: \(error)")
             seasonsState = .error(errorMessage(for: error))
         } catch {
-            print("Other error: \(error)")
             seasonsState = .error("Something went wrong while loading seasons. Please try again.")
         }
     }
