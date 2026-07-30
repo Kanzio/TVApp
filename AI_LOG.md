@@ -13,7 +13,7 @@ Before any code was written, I needed a complete Product Requirements Document t
 I referenced the original task PDF attached to the assignment as the source of truth for scope. First, acting as a Senior PM / Senior iOS Architect, produce a full PRD (overview, functional/non-functional requirements, user stories, user flow, screen specs, data model, API layer, architecture, state management, navigation, networking, image loading, HTML rendering, error handling, testing plan, folder structure, commit plan, roadmap, README outline, AI usage opportunities, future improvements) explicitly no implementation code. Second, once the PRD was written, I asked for a follow-up prompt specifically written for an AI coding agent to execute that PRD correctly.
 
 **What it gave me:**  
-A PRD (PRD.md) covering every required area, including explicit architectural decisions. Then a separate Prompt.md containing ground rules for an execution agent: work phase-by-phase per the PRD's roadmap.
+A PRD (PRD.md) covering every required area, including explicit architectural decisions. Then a separate Prompt.md containing ground rules for an execution agent to work phase-by-phase per the PRD's roadmap.
 
 **Action taken:** Accepted both documents as delivered, no corrections needed at this stage since no code existed yet to surface errors against.
 

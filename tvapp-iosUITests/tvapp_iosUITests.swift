@@ -1,41 +1,57 @@
-//
-//  tvapp_iosUITests.swift
-//  tvapp-iosUITests
-//
-//  Created by Kanz Gallagher on 29/07/26.
-//
-
 import XCTest
 
 final class tvapp_iosUITests: XCTestCase {
 
+    private var app: XCUIApplication!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launch()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
+    }
+
+    // MARK: - Tests
+
+    @MainActor
+    func testShowListDisplaysNavigationBarTitle() throws {
+        // Verify navigation title on the main show list
+        let navBar = app.navigationBars["TV Shows"]
+        XCTAssertTrue(navBar.waitForExistence(timeout: 5.0), "Navigation title 'TV Shows' should be displayed.")
     }
 
     @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    func testNavigateToShowDetailAndBack() throws {
+        // 1. Wait for the list to load and verify navigation title
+        let navBar = app.navigationBars["TV Shows"]
+        XCTAssertTrue(navBar.waitForExistence(timeout: 5.0), "Main list navigation bar should appear.")
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // XCUIAutomation Documentation
-        // https://developer.apple.com/documentation/xcuiautomation
+        // 2. Find and tap the first cell in the List
+        let firstCell = app.cells.firstMatch
+        XCTAssertTrue(firstCell.waitForExistence(timeout: 5.0), "Show list should contain at least one item.")
+        firstCell.tap()
+
+        // 3. Verify detail screen loaded by checking Cast and Seasons section headers
+        let castHeader = app.staticTexts["Cast"]
+        XCTAssertTrue(castHeader.waitForExistence(timeout: 5.0), "Detail view should display 'Cast' section header.")
+
+        let seasonsHeader = app.staticTexts["Seasons"]
+        XCTAssertTrue(seasonsHeader.waitForExistence(timeout: 5.0), "Detail view should display 'Seasons' section header.")
+
+        // 4. Navigate back to the main list
+        let backButton = app.navigationBars.buttons.firstMatch
+        XCTAssertTrue(backButton.exists, "Back button should exist in navigation bar.")
+        backButton.tap()
+
+        // 5. Verify we are back on the main list
+        XCTAssertTrue(navBar.waitForExistence(timeout: 5.0), "Should navigate back to main 'TV Shows' list.")
     }
 
     @MainActor
     func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
         measure(metrics: [XCTApplicationLaunchMetric()]) {
             XCUIApplication().launch()
         }
